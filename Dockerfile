@@ -9,6 +9,11 @@ RUN apt update && apt install -y git python3-zmq libevent-dev libboost-dev libdb
 RUN git config --global user.email "bitcoin-coverage@aureleoules.com"
 RUN git config --global user.name "bitcoin-coverage"
 
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install && \
+    rm -rf awscliv2.zip aws
+
 RUN git clone https://github.com/bitcoin/bitcoin.git /tmp/bitcoin
 WORKDIR /tmp/bitcoin
 RUN make -C depends NO_BOOST=1 NO_LIBEVENT=1 NO_QT=1 NO_SQLITE=1 NO_NATPMP=1 NO_UPNP=1 NO_ZMQ=1 NO_USDT=1
