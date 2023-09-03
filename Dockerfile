@@ -27,6 +27,7 @@ RUN ln -s /usr/bin/sccache /usr/bin/ccache
 
 ENV SCCACHE_BUCKET=bitcoin-coverage-ccache 
 ENV SCCACHE_REGION=eu-west-1
+ENV SCCACHE_S3_USE_SSL=true
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
