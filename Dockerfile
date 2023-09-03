@@ -25,10 +25,6 @@ RUN wget https://github.com/mozilla/sccache/releases/download/v0.5.4/sccache-v0.
 
 RUN ln -s /usr/bin/sccache /usr/bin/ccache
 
-ENV SCCACHE_BUCKET=bitcoin-coverage-ccache 
-ENV SCCACHE_REGION=eu-west-1
-ENV SCCACHE_S3_USE_SSL=true
-
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
