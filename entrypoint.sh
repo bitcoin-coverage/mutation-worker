@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+ccache --show-stats
 
 cd /tmp/bitcoin && git pull origin master
 git fetch origin pull/$PR_NUM/head && git checkout FETCH_HEAD
