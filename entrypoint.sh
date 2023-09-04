@@ -13,4 +13,4 @@ patch -p0 < patch
 
 make -j$(nproc)
 make check -j$(nproc)
-python3 test/functional/test_runner.py -j$(nproc)
+python3 test/functional/test_runner.py -j$(nproc) -F
