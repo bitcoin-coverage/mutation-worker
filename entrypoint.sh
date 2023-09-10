@@ -12,5 +12,10 @@ echo $PAYLOAD | jq -r .patch | base64 -d > patch
 patch -p0 < patch
 
 make -j$(nproc)
-make check -j$(nproc)
+
+# Optimized unit tests run
+tests=$(./src/test/test_bitcoin --list_content 2>&1)
+filtered=$(echo "$tests" | grep -v "    ")
+echo "$filtered" | parallel --halt now,fail=1 ./src/test/test_bitcoin -t {} 2>&1
+
 python3 test/functional/test_runner.py -j$(nproc) -F
