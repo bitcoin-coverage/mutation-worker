@@ -27,4 +27,9 @@ RUN ln -s /usr/bin/sccache /usr/bin/ccache
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+
+RUN useradd -ms /bin/bash coverage
+RUN chown -R coverage:coverage /tmp
+USER coverage
+
 ENTRYPOINT ["/entrypoint.sh"]
